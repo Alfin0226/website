@@ -13,6 +13,7 @@ const projects = [
       "Engineered an automated quantitative trading system utilizing an LSTM neural network. Designed dynamic ATR-based circuit breakers and 200-SMA macro regime filters.",
     tags: ["Python", "TensorFlow", "Alpaca API"],
     status: "Live Paper Trading (Peak Daily Return: +1.2%)",
+    href: "https://alfin0226.github.io/algo-trade-strategy-report/",
   },
   {
     title: "MarketTracker",
