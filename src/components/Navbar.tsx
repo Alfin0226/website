@@ -1,45 +1,83 @@
 "use client";
 
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { Github, Linkedin, Home, Sun, Moon, Code, Briefcase, Award, MessageCircle } from "lucide-react";
+import { useTheme } from "@/components/ThemeProvider";
 import { cn } from "@/lib/utils";
 
-const navLinks = [
-  { label: "About", href: "#about" },
-  { label: "Projects", href: "#projects" },
-  { label: "Notes", href: "#notes" },
-  { label: "Resume", href: "/resume" },
+const sections = [
+  { icon: Home, href: "#top", label: "Home" },
+  { icon: Code, href: "#tech-stack", label: "Tech Stack" },
+  { icon: Briefcase, href: "#projects", label: "Projects" },
+  { icon: MessageCircle, href: "#contact", label: "Contact" },
+];
+
+const socialLinks = [
+  { icon: Github, href: "https://github.com", label: "GitHub" },
+  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
 ];
 
 export default function Navbar() {
-  const pathname = usePathname();
+  const { theme, toggleTheme } = useTheme();
+
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (href === "#top") {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
-      <nav className="mx-auto flex h-14 max-w-content items-center justify-between px-6">
-        <Link
-          href="/"
-          className="font-semibold text-sm tracking-tight text-foreground hover:text-muted transition-colors"
-        >
-          AL
-        </Link>
+    <nav className="fixed bottom-4 left-1/2 z-50 -translate-x-1/2">
+      <div className="bottom-bar">
+        {/* Section Links */}
+        {sections.map(({ icon: Icon, href, label }) => (
+          <a
+            key={label}
+            href={href}
+            onClick={(e) => handleClick(e, href)}
+            aria-label={label}
+            className="bottom-bar-item"
+            title={label}
+          >
+            <Icon className="h-[18px] w-[18px]" strokeWidth={1.6} />
+          </a>
+        ))}
 
-        <ul className="flex items-center gap-8">
-          {navLinks.map(({ label, href }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                className={cn(
-                  "text-xs font-mono tracking-wide transition-colors hover:text-foreground",
-                  pathname === href ? "text-foreground" : "text-muted"
-                )}
-              >
-                {label}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-    </header>
+        {/* Divider */}
+        <div className="bottom-bar-divider" />
+
+        {/* Social Links */}
+        {socialLinks.map(({ icon: Icon, href, label }) => (
+          <a
+            key={label}
+            href={href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={label}
+            className="bottom-bar-item"
+            title={label}
+          >
+            <Icon className="h-[18px] w-[18px]" strokeWidth={1.6} />
+          </a>
+        ))}
+
+        {/* Divider */}
+        <div className="bottom-bar-divider" />
+
+        {/* Theme Toggle */}
+        <button
+          onClick={toggleTheme}
+          aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          className="bottom-bar-item"
+          title={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+        >
+          {theme === "dark" ? (
+            <Sun className="h-[18px] w-[18px]" strokeWidth={1.6} />
+          ) : (
+            <Moon className="h-[18px] w-[18px]" strokeWidth={1.6} />
+          )}
+        </button>
+      </div>
+    </nav>
   );
 }

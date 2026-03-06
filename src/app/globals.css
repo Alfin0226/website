@@ -2,7 +2,7 @@
 
 /* ── Tailwind v4 Theme Configuration ── */
 @theme {
-  /* Colors */
+  /* Light Colors (default) */
   --color-background: #fafafa;
   --color-foreground: #111111;
   --color-muted: #888888;
@@ -25,6 +25,7 @@
       opacity: 0;
       transform: translateY(8px);
     }
+
     100% {
       opacity: 1;
       transform: translateY(0);
@@ -32,10 +33,12 @@
   }
 
   @keyframes typewriter-cursor {
+
     0%,
     100% {
-      border-color: #111111;
+      border-color: var(--color-foreground);
     }
+
     50% {
       border-color: transparent;
     }
@@ -47,6 +50,30 @@
   --animate-fade-in-delay-2: fade-in 0.6s ease-out 0.3s forwards;
   --animate-fade-in-delay-3: fade-in 0.6s ease-out 0.45s forwards;
   --animate-cursor: typewriter-cursor 1s steps(1) infinite;
+}
+
+/* ── Dark Theme ── */
+[data-theme="dark"] {
+  --color-background: #0a0a0f;
+  --color-foreground: #e8e8ed;
+  --color-muted: #8888a0;
+  --color-border: #1e1e2e;
+  --color-border-hover: #2a2a3e;
+  --color-card: #12121a;
+  --color-card-foreground: #e8e8ed;
+  --color-accent: #c0c0d0;
+}
+
+/* ── Light Theme ── */
+[data-theme="light"] {
+  --color-background: #fafafa;
+  --color-foreground: #111111;
+  --color-muted: #888888;
+  --color-border: #e5e5e5;
+  --color-border-hover: #cccccc;
+  --color-card: #ffffff;
+  --color-card-foreground: #111111;
+  --color-accent: #333333;
 }
 
 /* ── Base Styles ── */
@@ -69,11 +96,12 @@
     font-family: var(--font-sans);
     line-height: 1.7;
     letter-spacing: -0.01em;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 
   ::selection {
-    background-color: #111111;
-    color: #fafafa;
+    background-color: var(--color-foreground);
+    color: var(--color-background);
   }
 }
 
@@ -85,4 +113,180 @@
   letter-spacing: 0.2em;
   color: var(--color-muted);
   margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* ── Bottom Bar ── */
+.bottom-bar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 10px;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
+  backdrop-filter: blur(20px);
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+[data-theme="dark"] .bottom-bar {
+  background-color: rgba(18, 18, 26, 0.85);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4), 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+.bottom-bar-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: transparent;
+  border: none;
+  text-decoration: none;
+}
+
+.bottom-bar-item:hover {
+  color: var(--color-foreground);
+  background-color: var(--color-border);
+}
+
+.bottom-bar-divider {
+  width: 1px;
+  height: 20px;
+  background-color: var(--color-border);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+/* ── Tech Stack Grid ── */
+.tech-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.tech-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 88px;
+  padding: 16px 8px;
+  border-radius: 12px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card);
+  transition: all 0.25s ease;
+  cursor: default;
+}
+
+.tech-item:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .tech-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.tech-item img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+}
+
+.tech-item span {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--color-muted);
+  text-align: center;
+  letter-spacing: 0.02em;
+}
+
+/* ── Tech Category ── */
+.tech-category {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.tech-category:last-child {
+  margin-bottom: 0;
+}
+
+.tech-category-title {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--color-foreground);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+  text-align: center;
+}
+
+/* ── Learning Badge ── */
+.tech-item-learning {
+  border-style: dashed;
+  position: relative;
+}
+
+.tech-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 0.5rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #f59e0b;
+  background: rgba(245, 158, 11, 0.1);
+  padding: 1px 5px;
+  border-radius: 4px;
+  line-height: 1.4;
+}
+
+/* ── Contact Cards ── */
+.contact-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px 16px;
+  border-radius: 16px;
+  border: 1px solid var(--color-border);
+  background-color: var(--color-card);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.contact-card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="dark"] .contact-card:hover {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.contact-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background-color: var(--color-border);
+  color: var(--color-muted);
+  transition: all 0.3s ease;
+}
+
+.contact-card:hover .contact-card-icon {
+  color: var(--color-foreground);
 }

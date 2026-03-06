@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, Mail, ArrowUpRight } from "lucide-react";
+import { Github, Linkedin } from "lucide-react";
 import { motion } from "framer-motion";
 import Section from "@/components/Section";
 import ProjectCard from "@/components/ProjectCard";
@@ -19,30 +19,70 @@ const projects = [
     description:
       'Architected a full-stack stock simulation platform. Normalized financial data for 5,000+ tickers and engineered an asynchronous "pre-warming" mechanism to reduce server cold-start latency to zero.',
     tags: ["React", "Flask", "PostgreSQL", "Pandas"],
+    href: "https://marketracker.vercel.app/",
+    github: "https://github.com/Alfin0226/MarkeTracker",
   },
 ];
 
-const achievements = [
-  "British Informatics Olympiad 2025: Scored 34 points (nearly 50% year-on-year growth).",
-  "Economics Olympiad 2025: Scored 64% in the International Final Round.",
-  "The Marketing Store (Internship): Quantitative Analyst Intern for MCD Happy Meal Engineering Team.",
-];
 
-const socials = [
+
+/* ── Tech Stack Data ── */
+const techStack = [
   {
-    icon: Github,
-    href: "https://github.com",
-    label: "GitHub",
+    category: "Languages",
+    items: [
+      { name: "Python", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg", status: "know" as const },
+      { name: "SQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", status: "know" as const },
+      { name: "TypeScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg", status: "learning" as const },
+      { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg", status: "learning" as const },
+      { name: "R", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg", status: "learning" as const },
+    ],
   },
+  {
+    category: "Frontend",
+    items: [
+      { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg", status: "know" as const },
+      { name: "HTML", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg", status: "know" as const },
+      { name: "CSS", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg", status: "know" as const },
+    ],
+  },
+  {
+    category: "Backend & Data",
+    items: [
+      { name: "Flask", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg", status: "know" as const },
+      { name: "PostgreSQL", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg", status: "know" as const },
+      { name: "Pandas", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg", status: "learning" as const },
+    ],
+  },
+  {
+    category: "ML & AI",
+    items: [
+      { name: "TensorFlow", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg", status: "learning" as const },
+      { name: "NumPy", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg", status: "learning" as const },
+    ],
+  },
+  {
+    category: "Tools",
+    items: [
+      { name: "Git", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg", status: "know" as const },
+      { name: "VS Code", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg", status: "know" as const },
+    ],
+  },
+];
+
+/* ── Contact Cards ── */
+const contactLinks = [
   {
     icon: Linkedin,
+    title: "LinkedIn",
+    subtitle: "Connect with me",
     href: "https://linkedin.com",
-    label: "LinkedIn",
   },
   {
-    icon: Mail,
-    href: "mailto:hello@example.com",
-    label: "Email",
+    icon: Github,
+    title: "GitHub",
+    subtitle: "View my code",
+    href: "https://github.com",
   },
 ];
 
@@ -50,7 +90,7 @@ export default function Home() {
   return (
     <>
       {/* ── Hero ── */}
-      <section id="about" className="pt-24 pb-16">
+      <section id="top" className="pt-24 pb-16 text-center">
         <motion.h1
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -71,46 +111,51 @@ export default function Home() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-6 max-w-[600px] text-sm leading-relaxed text-muted"
+          className="mt-6 mx-auto max-w-[600px] text-sm leading-relaxed text-muted"
         >
-          Aspiring software engineer based in the UK. Predicted 4 A*s in Maths,
-          Further Maths, Physics, and Computer Science. I specialize in building
-          high-availability systems, predictive algorithms, and solving
-          real-world financial constraints.
+          Aspiring software engineer and quantitative developer based in the UK.
+          Predicted 3 A*s and 1 A in Mathematics, Physics, Computer Science,
+          and Further Mathematics. I specialize in data-driven
+          engineering—building predictive algorithms, robust data pipelines,
+          and high-availability systems to solve real-world financial
+          constraints.
         </motion.p>
-
-        {/* Social Links */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
-          className="mt-8 flex items-center gap-5"
-        >
-          {socials.map(({ icon: Icon, href, label }) => (
-            <a
-              key={label}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={label}
-              className="group flex items-center gap-1.5 text-muted transition-colors hover:text-foreground"
-            >
-              <Icon className="h-4 w-4" strokeWidth={1.5} />
-              <span className="text-xs font-mono tracking-wide">{label}</span>
-              <ArrowUpRight className="h-3 w-3 opacity-0 -translate-y-0.5 translate-x-[-2px] transition-all group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0" />
-            </a>
-          ))}
-        </motion.div>
       </section>
 
       {/* ── Divider ── */}
       <hr className="border-border" />
 
-      {/* ── Projects ── */}
-      <Section id="projects" heading="Selected Projects">
-        <div className="grid gap-6 sm:grid-cols-2">
-          {projects.map((project, i) => (
-            <ProjectCard key={project.title} {...project} index={i} />
+      {/* ── Tech Stack ── */}
+      <Section id="tech-stack" heading="Tech Stack">
+        <div className="space-y-0">
+          {techStack.map((group, gi) => (
+            <motion.div
+              key={group.category}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: gi * 0.08 }}
+              className="tech-category"
+            >
+              <h3 className="tech-category-title">{group.category}</h3>
+              <div className="tech-grid">
+                {group.items.map((tech, ti) => (
+                  <motion.div
+                    key={tech.name}
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: gi * 0.08 + ti * 0.04 }}
+                    className={`tech-item ${tech.status === "learning" ? "tech-item-learning" : ""}`}
+                  >
+                    {tech.status === "learning" && (
+                      <span className="tech-badge">Learning</span>
+                    )}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={tech.icon} alt={tech.name} loading="lazy" />
+                    <span>{tech.name}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           ))}
         </div>
       </Section>
@@ -118,22 +163,49 @@ export default function Home() {
       {/* ── Divider ── */}
       <hr className="border-border" />
 
-      {/* ── Achievements ── */}
-      <Section id="notes" heading="Achievements">
-        <ul className="space-y-4 border-l-2 border-border pl-6">
-          {achievements.map((item, i) => (
-            <motion.li
-              key={i}
-              initial={{ opacity: 0, x: -8 }}
-              whileInView={{ opacity: 1, x: 0 }}
+      {/* ── Projects ── */}
+      <Section id="projects" heading="Projects">
+        <div className="grid gap-6 sm:grid-cols-2">
+          {projects.map((project, i) => (
+            <ProjectCard key={project.title} {...project} index={i} />
+          ))}
+        </div>
+      </Section>
+
+
+
+      {/* ── Divider ── */}
+      <hr className="border-border" />
+
+      {/* ── Get in Touch ── */}
+      <Section id="contact" heading="Get in Touch">
+        <div className="text-center mb-8">
+          <h3 className="text-2xl font-semibold text-foreground">Get in Touch.</h3>
+          <p className="mt-2 text-sm text-muted">
+            Have a question or want to collaborate? I&apos;d love to hear from you.
+          </p>
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 max-w-md mx-auto">
+          {contactLinks.map(({ icon: Icon, title, subtitle, href }, i) => (
+            <motion.a
+              key={title}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.1 }}
-              className="text-sm leading-relaxed text-muted"
+              className="contact-card"
             >
-              {item}
-            </motion.li>
+              <div className="contact-card-icon">
+                <Icon className="h-6 w-6" strokeWidth={1.4} />
+              </div>
+              <h4 className="text-sm font-semibold text-foreground">{title}</h4>
+              <p className="text-xs text-muted">{subtitle}</p>
+            </motion.a>
           ))}
-        </ul>
+        </div>
       </Section>
 
       {/* ── Footer ── */}
