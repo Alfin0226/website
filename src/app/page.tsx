@@ -77,13 +77,13 @@ const contactLinks = [
     icon: Linkedin,
     title: "LinkedIn",
     subtitle: "Connect with me",
-    href: "https://linkedin.com",
+    href: "https://www.linkedin.com/in/alvin-lam-2b50572b8/",
   },
   {
     icon: Github,
     title: "GitHub",
     subtitle: "View my code",
-    href: "https://github.com",
+    href: "https://github.com/Alfin0226",
   },
 ];
 
