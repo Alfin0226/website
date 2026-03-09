@@ -12,8 +12,8 @@ const sections = [
 ];
 
 const socialLinks = [
-  { icon: Github, href: "https://github.com", label: "GitHub" },
-  { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+  { icon: Github, href: "https://github.com/Alfin0226", label: "GitHub" },
+  { icon: Linkedin, href: "https://www.linkedin.com/in/alvin-lam-2b50572b8/", label: "LinkedIn" },
 ];
 
 export default function Navbar() {
