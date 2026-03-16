@@ -19,7 +19,7 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Alvin Lam — Quantitative Engineering & Full-Stack Development",
   description:
-    "Aspiring software engineer and quantitative developer based in the UK. Predicted 3 A*s and 1 A in Mathematics, Physics, Computer Science, and Further Mathematics. I specialize in data-driven engineering,building predictive algorithms, robust data pipelines, and high-availability systems to solve real-world financial constraints.",
+    "Software Engineer and Quantitative Developer based in the UK, specializing in data analytics and predictive algorithms. I build data-driven solutions for complex financial and technological challenges",
 };
 
 export default function RootLayout({

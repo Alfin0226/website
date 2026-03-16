@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
-import alpacaIcon from "../../../public/alpaca_icon_1772756953271.png";
+import alpacaIcon from "../../public/alpaca_icon_1772756953271.png";
 
 /* Map tag names to devicon URLs */
 const tagIcons: Record<string, string> = {
