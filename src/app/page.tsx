@@ -114,7 +114,7 @@ export default function Home() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-6 mx-auto max-w-[600px] text-sm leading-relaxed text-muted"
         >
-          Software Engineer and Quantitative Developer based in the UK. I specialize in building autonomous trading systems, robust data pipelines, and predictive algorithms. I don't just write code; I engineer data-driven solutions for complex financial environments.
+          Software Engineer and Quantitative Developer based in the UK, specializing in data analytics and predictive algorithms. I build data-driven solutions for complex financial and technological challenges.
         </motion.p>
       </section>
 
